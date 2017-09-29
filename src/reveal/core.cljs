@@ -9,7 +9,7 @@
 ;; When changing comments, you manually need to refresh your browser
 (def options #js {:controls    true
                   :progress    true
-                  :transition  "fade"                    ; e.g. none/fade/slide/convex/concave/zoom
+                  :transition  "slide"                    ; e.g. none/fade/slide/convex/concave/zoom
                   :slideNumber false})
 
 
@@ -26,8 +26,7 @@
   []
   (set! (.. (.getElementById js/document "slides") -innerHTML) (convert))
   (.initialize js/Reveal options)
-  (.right js/Reveal)                                        ; Dirty workaround...
-  (.left js/Reveal))
+  (.setState js/Reveal (.getState js/Reveal)))
 (main)
 
 (defn on-js-reload []
